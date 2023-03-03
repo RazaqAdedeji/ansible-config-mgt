@@ -1,3 +1,3 @@
 # ansible-config-mgt
 
-Test if jenkins is working properly 
+Test if jenkins is working
