@@ -1,8 +1,8 @@
-- name: Include dynamic variables 
-  hosts: all
-  tasks:
-    - import_playbook: ../static-assignments/common.yml 
-    - import_playbook: ../dynamic-assignments/env-vars.yml
+- hosts: all
+  name: Include dynamic variables
+  vars_files:
+    - ../static-assignments/common.yml
+    - ../dynamic-assignments/env-vars.yml
   tags:
     - always
 
