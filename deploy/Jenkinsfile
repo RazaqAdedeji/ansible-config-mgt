@@ -19,7 +19,7 @@ pipeline {
     }
     }
 
-    stage ('Package') {
+    stage('Package') {
         steps {
             script {
                 sh 'echo "Package Stage"'
@@ -27,7 +27,7 @@ pipeline {
         }
     }
 
-    stage ('Deploy') {
+    stage('Deploy') {
         steps {
             script {
                 sh 'echo "Deploy stage'
@@ -35,7 +35,7 @@ pipeline {
         }
     }
 
-    stage (Clean up) {
+    stage(Clean up) {
         steps {
             script {
                 sh 'echo "Clean up stage"'
