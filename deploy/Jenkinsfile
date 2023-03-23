@@ -35,7 +35,7 @@ pipeline {
         }
     }
 
-    stage(Clean up) {
+    stage('Clean up') {
         steps {
             script {
                 sh 'echo "Clean up stage"'
