@@ -1,46 +1,42 @@
 pipeline {
     agent any
 
-  stages {
-    stage('Build') {
-      steps {
-        script {
-          sh 'echo "Building Stage"'
-        }
-      }
+ environment {
+      ANSIBLE_CONFIG="${WORKSPACE}/deploy/ansible.cfg"
     }
 
-    stage('Test') {
-      steps {
-        script {
-          sh 'echo "Testing Stage"'
-        }
-      }
-    }
-  
+    stages{
 
-    stage('Package') {
-      steps {
-        script {
-          sh 'echo "Package Stage"'
+      stage("Initial cleanup") {
+          steps {
+            dir("${WORKSPACE}") {
+              deleteDir()
+            }
+          }
         }
-      }
-    }
 
-    stage('Deploy') {
-      steps {
-        script {
-          sh 'echo "Deploy Stage"'
+      stage('Checkout SCM') {
+         steps{
+            git branch: 'main', url: 'https://github.com/RazaqAdedeji/ansible-config-mgt.git'
+         }
+       }
+      stage('Prepare Ansible For Execution') {
+        steps {
+          sh 'echo ${WORKSPACE}'          
         }
-      }
-    }
+     }
 
-    stage('Clean up') {
-      steps {
-        script {
-          sh 'echo "Clean up Stage"'
+
+      stage('Run Ansible') {
+        steps {
+            ansiblePlaybook become: true, credentialsId: '7845ee4a-7727-4bf2-9154-33e1833bc25a', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/dev.yml', playbook: 'playbooks/site.yml'
         }
       }
-    }
- }
+
+      stage('Clean Workspace after build'){
+        steps{
+          cleanWs()
+        }
+      }
+   }
 }
