@@ -33,7 +33,7 @@ pipeline {
 
       stage('Run Ansible') {
         steps {
-            ansiblePlaybook become: true, credentialsId: '7845ee4a-7727-4bf2-9154-33e1833bc25a', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/${inventory}', playbook: 'playbooks/site.yml'
+            ansiblePlaybook become: true, credentialsId: '7845ee4a-7727-4bf2-9154-33e1833bc25a', disableHostKeyChecking: true, installation: 'ansible', inventory: '${inventory}', playbook: 'playbooks/site.yml'
         }
       }
 
