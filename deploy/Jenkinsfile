@@ -19,12 +19,12 @@ pipeline {
           }
         }
 
-      stage('Checkout SCM') {
-         steps{
-          // checkout scmGit(branches: [[name: '*/main']], userRemoteConfigs: [[credentialsId: 'c90caaf1-22bb-4d35-bea2-573659bab33c', url: 'https://github.com/RazaqAdedeji/ansible-config-mgt.git']])
-            git branch: 'main', 'c90caaf1-22bb-4d35-bea2-573659bab33c', url: 'https://github.com/RazaqAdedeji/ansible-config-mgt.git'
-         }
-       }
+      // stage('Checkout SCM') {
+      //    steps{
+      //     // checkout scmGit(branches: [[name: '*/main']], userRemoteConfigs: [[credentialsId: 'c90caaf1-22bb-4d35-bea2-573659bab33c', url: 'https://github.com/RazaqAdedeji/ansible-config-mgt.git']])
+      //       git branch: 'main', 'c90caaf1-22bb-4d35-bea2-573659bab33c', url: 'https://github.com/RazaqAdedeji/ansible-config-mgt.git'
+      //    }
+      //  }
       stage('Prepare Ansible For Execution') {
         steps {
           sh 'echo ${WORKSPACE}'          
